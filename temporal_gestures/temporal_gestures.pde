@@ -28,5 +28,6 @@ void mouseDragged(){
 
 void mouseReleased(){
   //gesture ended, append to list
+  currentGesture.resample();
   gestures.add(currentGesture);
 }
