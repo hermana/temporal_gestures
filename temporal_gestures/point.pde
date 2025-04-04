@@ -15,4 +15,8 @@ class Point{
     PVector thatPoint = new PVector(that.x, that.y);
     return thisPoint.dist(thatPoint);
   }
+  
+  void setTime(float t){
+    this.t = t;
+  }
 }
