@@ -2,7 +2,7 @@ float TEMPORAL_GRAPH_SIZE=300;
 
 Gesture currentGesture;
 ArrayList<Gesture> gestures;
-
+ArrayList<Template> templates;
 
 enum State{
   DRAW,
@@ -16,6 +16,7 @@ void setup() {
   gestures = new ArrayList<Gesture>();
   currentGesture = new Gesture(); //FIXME: this one will always be empty and is just initiated to avoid a NPE 
   state = State.DRAW;
+  templates = generateTemplates();
 }
 
 void draw() {
@@ -57,6 +58,7 @@ void mouseDragged(){
 void mouseReleased(){
   //gesture ended, append to list
   currentGesture.resample();
+  currentGesture.printResampledPoints();
   gestures.add(currentGesture);
   state = State.DISPLAY;
 }

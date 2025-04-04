@@ -10,6 +10,12 @@ class Point{
     this.t = T;
   }
   
+  Point(Point p){
+    this.x = p.x;
+    this.y = p.y;
+    this.t = p.t;
+  }
+  
   float dist(Point that){
     PVector thisPoint = new PVector(this.x, this.y);
     PVector thatPoint = new PVector(that.x, that.y);

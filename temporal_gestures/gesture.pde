@@ -42,6 +42,17 @@ class Gesture{
     }
   }
   
+   // PRINT THE RESAMPLED POINTS, FOR CREATING GESTURES 
+  void printResampledPoints(){
+    PrintWriter output = createWriter("raw_template_data/template.txt");
+    for(Point p: resampledPoints){
+      output.println("points.add(new Point(" + nf(p.x, 0, 2) + ", " + nf(p.y, 0, 2) + ", "+ nf(p.t, 0, 2)+"));");
+    }
+    output.flush(); 
+    output.close(); 
+  }
+  
+  
   void resample(){
     //only do this if the original points array exists
     if(this.originalPoints.size()>MIN_GESTURE_POINTS){
