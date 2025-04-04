@@ -19,4 +19,8 @@ class Point{
   void setTime(float t){
     this.t = t;
   }
+  
+  float getTime(){
+    return this.t;
+  }
 }

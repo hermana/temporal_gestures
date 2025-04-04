@@ -1,3 +1,4 @@
+float TEMPORAL_GRAPH_SIZE=300;
 
 Gesture currentGesture;
 ArrayList<Gesture> gestures;
@@ -25,6 +26,11 @@ void draw() {
     break;
     case DISPLAY:
       currentGesture.drawResampled();
+      int offset =0;
+      for(Gesture g: gestures){
+        g.drawTemporalGraph(offset);
+        offset+=TEMPORAL_GRAPH_SIZE;
+      }
       break;
     default:
       break;
