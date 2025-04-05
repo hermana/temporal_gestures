@@ -1,4 +1,5 @@
 float TEMPORAL_GRAPH_SIZE=300;
+float GESTURE_MATCH_ERROR_THRESHOLD=5; //some will be as different as 8 but there should be at least one under 5
 
 Gesture currentGesture;
 ArrayList<Gesture> gestures;
@@ -71,7 +72,7 @@ void drawTemplates(){
   float x_offset = 0;
   float y_offset = 0;
   for(Template t: templates){
-    t.drawTemporalGraph(x_offset, y_offset);
+    t.drawTemporalGraph(currentGesture, x_offset, y_offset);
     x_offset += TEMPORAL_GRAPH_SIZE;
     if((x_offset/TEMPORAL_GRAPH_SIZE)>3){
       x_offset = 0;
@@ -85,10 +86,15 @@ void match(){
   float leastDiff = 1000000;
   for(Template t: templates){
     float diff = currentGesture.compare(t);
+    println(t.name + ": "+ nf(diff, 0, 3));
     if(diff < leastDiff){
       leastDiff = diff;
       bestMatch = t.name;
     }
   }
-  println("the best match is " + bestMatch);
+  if(leastDiff > GESTURE_MATCH_ERROR_THRESHOLD){
+    println("The gesture was not matched to any template, with an error above the threshold for all templates.");
+  }else{
+    println("The best match is " + bestMatch + " with an error of " + nf(leastDiff, 0, 3));
+  }
 }
