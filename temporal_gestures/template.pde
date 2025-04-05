@@ -14,7 +14,7 @@ class Template{
   void drawTemporalGraph(float x_offset, float y_offset){
     strokeWeight(3);
     stroke(0, 255, 255);
-    fill(0,0,0);
+    fill(20,20,20);
     pushMatrix();
       translate(x_offset, y_offset);
       rect(0, 0, TEMPORAL_GRAPH_SIZE, TEMPORAL_GRAPH_SIZE);

@@ -42,7 +42,7 @@ class Gesture{
     }
   }
   
-   // PRINT THE RESAMPLED POINTS, FOR CREATING GESTURES 
+   // This was used to create gesture templates
   void printResampledPoints(){
     PrintWriter output = createWriter("raw_template_data/template.txt");
     for(Point p: resampledPoints){
@@ -104,5 +104,13 @@ class Gesture{
       this.resampledPoints.add(this.originalPoints.get(this.originalPoints.size() - 1)); 
       this.resampledPoints.get(this.resampledPoints.size() -1).setTime(1);
     }
+  }
+  
+  float compare(Template t){
+    float sum_of_differences = 0;
+    for(int i=0; i<this.resampledPoints.size(); i++){
+      sum_of_differences+=abs(this.resampledPoints.get(i).getTime() - t.points.get(i).getTime());
+    }
+    return sum_of_differences;
   }
  }

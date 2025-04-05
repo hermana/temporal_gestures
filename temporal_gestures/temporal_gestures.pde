@@ -60,9 +60,10 @@ void mouseDragged(){
 void mouseReleased(){
   //gesture ended, append to list
   currentGesture.resample();
-  currentGesture.printResampledPoints();
+  //currentGesture.printResampledPoints();
   gestures.add(currentGesture);
   state = State.DISPLAY;
+  match();
 }
 
 
@@ -77,5 +78,17 @@ void drawTemplates(){
       y_offset += TEMPORAL_GRAPH_SIZE;
     }
   }
-  
+}
+
+void match(){
+  String bestMatch = "";
+  float leastDiff = 1000000;
+  for(Template t: templates){
+    float diff = currentGesture.compare(t);
+    if(diff < leastDiff){
+      leastDiff = diff;
+      bestMatch = t.name;
+    }
+  }
+  println("the best match is " + bestMatch);
 }
